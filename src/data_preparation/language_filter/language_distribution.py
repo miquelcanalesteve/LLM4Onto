@@ -2,7 +2,7 @@ import ast
 from collections import defaultdict
 import pandas as pd
 
-data = pd.read_excel("ontology_metrics_lang_2.xlsx")
+data = pd.read_excel("ontology_metrics_lang.xlsx")
 
 
 # Diccionario para almacenar la suma total de valores por idioma

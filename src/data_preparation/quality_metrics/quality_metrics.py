@@ -91,7 +91,7 @@ def calculate_totals_and_densities(concept_properties, g, n_classes):
     :param concept_properties: Dictionary with properties associated with each concept.
     :param g: RDF graph.
     :param n_classes: Total number of classes.
-    :return: Dictionary with calculated metrics and a list of non-taxonomic relationships.
+    :return: Dictionary with calculated metrics.
     """
     all_object_properties = set()
     all_data_annotation_properties = set()
@@ -113,17 +113,10 @@ def calculate_totals_and_densities(concept_properties, g, n_classes):
 
     # Densities
     property_density = (total_object_properties + total_data_annotation_properties) / n_classes if n_classes > 0 else 0
-    object_density = total_object_properties / n_classes if n_classes > 0 else 0
-    data_annotation_density = total_data_annotation_properties / n_classes if n_classes > 0 else 0
     non_taxonomic_density = total_non_taxonomic_relations / n_classes if n_classes > 0 else 0
 
     results = {
-        "total_object_properties": total_object_properties,
-        "total_data_annotation_properties": total_data_annotation_properties,
         "property_density": property_density,
-        "object_density": object_density,
-        "data_annotation_density": data_annotation_density,
-        "total_non_taxonomic_relations": total_non_taxonomic_relations,
         "non_taxonomic_density": non_taxonomic_density,  # Average non-taxonomic relationships per class
     }
     return results
@@ -209,8 +202,7 @@ def process_ttl_file(file_path):
         g.parse(file_path, format="turtle")
 
         # Count total tokens
-        # total_tokens = count_tokens_in_file(file_path)
-        total_tokens=0
+        total_tokens = count_tokens_in_file(file_path)
 
         # Total number of triples in the file
         total_triples = len(g)
@@ -226,15 +218,8 @@ def process_ttl_file(file_path):
             "File Name": os.path.basename(file_path),
             "Total Tokens": total_tokens,
             "Total Triples": total_triples,
-            "Total Classes": n_classes,
-            "Total Object Properties": totals_and_densities['total_object_properties'],
-            "Total Data/Annotation Properties": totals_and_densities['total_data_annotation_properties'],
             "Property Density": totals_and_densities['property_density'],
-            "Object Density": totals_and_densities['object_density'],
-            "Data/Annotation Density": totals_and_densities['data_annotation_density'],
-            "Total Non-Taxonomic Relations": totals_and_densities['total_non_taxonomic_relations'],
             "Average Non-Taxonomic Relations per Class": totals_and_densities['non_taxonomic_density'],
-            "Total Subclasses": subclass_metrics['total_subclasses'],
             "Average Subclasses per Class": subclass_metrics['average_subclasses_per_class'],
         }
 
@@ -247,7 +232,7 @@ if __name__ == "__main__":
     # Folder containing the TTL files
     current_dir = os.path.dirname(os.path.abspath(__file__))
     print(current_dir)
-    folder_path = "C:\\Users\\gplsi\\OneDrive - UNIVERSIDAD ALICANTE\\PhD\\v4\\LLM4Onto\\LLM4Onto\\src\\data_preparation\\quality_metrics\\ttl\\ttl"  # Change this to the actual folder path
+    folder_path = "C:\\Users\\gplsi\\OneDrive - UNIVERSIDAD ALICANTE\\PhD\\v4\\LLM4Onto\\LLM4Onto\\src\\data_preparation\\quality_metrics\\ttl"  # Change this to the actual folder path
     output_excel = "ontology_metrics.xlsx"
 
     # Initialize an empty DataFrame
@@ -255,15 +240,8 @@ if __name__ == "__main__":
             "File Name",
             "Total Tokens",
             "Total Triples",
-            "Total Classes",
-            "Total Object Properties",
-            "Total Data/Annotation Properties",
             "Property Density",
-            "Object Density",
-            "Data/Annotation Density",
-            "Total Non-Taxonomic Relations",
             "Average Non-Taxonomic Relations per Class",
-            "Total Subclasses",
             "Average Subclasses per Class"]
     df = pd.DataFrame(columns=columns)
 
