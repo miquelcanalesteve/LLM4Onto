@@ -6,7 +6,7 @@ import shutil
 EXCEL_FILE = "./../../outputs/ontology_metrics.xlsx"
 QUALITY_THRESHOLD = 2.210636645962733
 TTL_DIR = "./../../data/full_dataset"
-DEST_DIR_QUALITY = "./../../data/selected_ontologies"
+DEST_DIR_QUALITY = "./../../data/selected_ontologies/selected_ontologies"
 
 
 def load_data(file_path, sheet_name="Sheet1"):

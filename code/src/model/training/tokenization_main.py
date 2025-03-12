@@ -6,10 +6,10 @@ from datasets import load_dataset, DatasetDict, Dataset, Features, Value, load_f
 import psutil
 import os
 from transformers import AutoTokenizer
-from arguments import *
+from tokenization_arguments import *
 
 
-args = parse_args(sequence_length=2048, model_name="meta-llama/Llama-3.2-1B", input_dir="/workspace/NAS/mikel/ontologias/ontologias_dataset_crudo/dbpedia-archivo/ttl/df_calidad_alta_q1q2")
+args = parse_args(sequence_length=2048, model_name="meta-llama/Llama-3.2-1B", input_dir="/app/data/selected_ontologies")
 
 def split_large_file(file_path, max_size=104857600, output_dir=None):
     """

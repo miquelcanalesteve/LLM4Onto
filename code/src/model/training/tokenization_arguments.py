@@ -4,9 +4,9 @@ from argparse import ArgumentParser
 def parse_args(sequence_length, model_name, input_dir):
     
     
-    dataset_dir =  "splitted_df_calidad_alta_q1q2"
-    arrow_dataset_dir = "arrow_df_calidad_alta_q1q2"
-    tokenized_dataset_dir = "tokenized_df_calidad_alta_q1q2"
+    dataset_dir =  "splitted_selected_ontologies"
+    arrow_dataset_dir = "arrow_selected_ontologies"
+    tokenized_dataset_dir = "tokenized_selected_ontologies"
     parser = ArgumentParser(description="Tokenize and filter a dataset for causal language modeling.")
     
     

@@ -49,9 +49,7 @@ This script processes ontologies and computes key quality metrics.
 
 ---
 
-### `select_ontologies.py`
-
-This script selects ontologies based on a predefined **Quality Score threshold** and copies them to a separate folder for training.
+This script selects ontologies based on a predefined **Quality Score threshold** and copies them to a structured directory for training.
 
 #### **Functionality:**
 - Loads the computed ontology metrics from `ontology_metrics.xlsx`.
@@ -63,12 +61,15 @@ This script selects ontologies based on a predefined **Quality Score threshold**
 - A folder containing ontology files in Turtle (`.ttl`) format.
 
 #### **Output:**
-- A new directory (`selected_ontologies`) containing high-quality ontology files.
+- A root directory (`selected_ontologies`) that contains another directory with the same name (`selected_ontologies/selected_ontologies`), where the selected ontology files are stored.
 
 #### **Process:**
 1. Loads ontology metrics from the Excel file.
 2. Filters ontologies with a Quality Score above the defined threshold.
-3. Copies selected `.ttl` files from the original dataset folder to `selected_ontologies`.
+3. Copies selected `.ttl` files from the original dataset folder into `selected_ontologies/selected_ontologies`.
+
+#### **Why is the directory structure duplicated?**
+The script is designed to create a root folder (`selected_ontologies`) that contains another folder of the same name (`selected_ontologies/selected_ontologies`). This structure is intentional because the tokenizer script is configured to receive a path pointing to a directory, inside which it expects to find another folder containing the actual ontology files. This ensures compatibility with the tokenizer's expected input format and avoids the need for additional path adjustments.
 
 ---
 

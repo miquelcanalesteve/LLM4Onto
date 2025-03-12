@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  model:
+    container_name: semantic_train
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.model
+    volumes:
+      - ../src/model:/app/model
+      - ../data:/app/data
+    command: sleep infinity  
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: ["0", "3", "4"]
+              capabilities: [gpu]

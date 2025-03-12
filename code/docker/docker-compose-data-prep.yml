@@ -9,4 +9,4 @@ services:
       - ../src/data_preparation:/app/data_prep
       - ../outputs:/app/outputs
       - ../data:/app/data
-    command: sleep infinity  # Mantiene el contenedor abierto para ejecutar scripts manualmente
+    command: sleep infinity  
