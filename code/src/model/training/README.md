@@ -4,7 +4,7 @@ This module is responsible for **tokenizing, training, and converting** a Llama 
 
 ---
 
-## 🚀 Overview
+## Overview
 
 The training process consists of **three main steps**:
 
