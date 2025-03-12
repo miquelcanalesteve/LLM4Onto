@@ -20,7 +20,9 @@ def extract_textual_metrics(g):
             language.append(detect(literal))
         
         except Exception as e:
-            print("Exception: ",e)
+            if "No features in text." not in str(e):  # Only shows an error if it's a different exception. 
+                                                      # This one means that no language was detected
+                print("Exception:", e)
             language.append('')
 
     total_elements  = len(language)
@@ -53,9 +55,8 @@ def process_ttl_file(file_path):
         return None
 
 if __name__ == "__main__":
-    # Folder containing the TTL files
-    folder_path = "./ttl"  # Change this to the actual folder path
-    output_excel = "ontology_metrics_lang.xlsx"
+    folder_path = "./../../data/full_dataset" # Folder containing the TTL files
+    output_excel = "./../../outputs/ontology_metrics_lang.xlsx"
 
     # Initialize an empty DataFrame
     columns = [

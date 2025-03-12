@@ -1,0 +1,629 @@
+@base <http://purl.org/rvl/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix : <> .
+@prefix bibo: <../ontology/bibo/> .
+@prefix dct: <../dc/terms/> .
+@prefix event: <../NET/c4dm/event.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rvl-docu: <docu/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix swstatus: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix viso-graphic: <../viso/graphic/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dct:description
+    a owl:AnnotationProperty .
+
+<>
+    dct:creator <../viso/JanPolowinski> ;
+    dct:description """RVL is a declarative language that allows to specify a mapping from RDF(S)/OWL concepts to visual means that are defined in the <a href=\"http://purl.org/viso/\">Visualisation Ontology</a> (VISO). The syntax is based on RDFS, while the semantics are given by means of SPIN rules.  
+
+RVL was developed in the SemVis project by Jan Polowinski. More on RVL can be found in the <a href=\"https://github.com/semvis/rvl/wiki\" title=\"The RVL-Wiki on GitHub ...\">Wiki</a>.
+
+<h3>Overview of Mapping Classes in RVL</h3>
+
+<img src=\"http://www-st.inf.tu-dresden.de/semvis/ontologies/rvl/img/rvl_class_diagram.png\">
+
+<h3>Overview of Datatypes used in RVL</h3>
+<b>MissingSourceValueHandlingType:</b> Hide, Ignore, Missing (default), Neutral, Average
+<b>MissingValueMappingHandlingType:</b> Calculate (default), Hide, Neutral, Ignore, No mapping, Average
+<b>NeutralValueHandlingType:</b> Average, Style
+<b>OutOfBoundHandlingType:</b> Cut (default), Clamp
+<b>ScaleTransformationType:</b> Linear (default), Logarithmic
+
+<!--<img src=\"http://www-st.inf.tu-dresden.de/semvis/ontologies/rvl/img/datatypes_rvl.png\"/>-->""" ;
+    a owl:Ontology ;
+    rdfs:label "RDFS/OWL Visualization Language (RVL)"^^xsd:string ;
+    owl:imports <docu/>, <../viso/graphic/> .
+
+:Average
+    a :MissingSourceValueHandlingType, :MissingValueMappingHandlingType, :NeutralValueHandlingType ;
+    rdfs:label "Average"^^xsd:string .
+
+:Calculate
+    a :MissingValueMappingHandlingType ;
+    rdfs:label "Calculate"^^xsd:string .
+
+:Clamp
+    a :OutOfBoundHandlingType ;
+    rdfs:label "clamp"^^xsd:string .
+
+:Cut
+    a :OutOfBoundHandlingType ;
+    rdfs:label "cut"^^xsd:string .
+
+:GraphicAttributeInterval
+    a owl:Class ;
+    rdfs:label "Graphic attribute interval"^^xsd:string ;
+    rdfs:subClassOf :Interval ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:Hide
+    a :MissingSourceValueHandlingType, :MissingValueMappingHandlingType ;
+    rdfs:label "Hide"^^xsd:string .
+
+:IdentityMapping
+    a owl:Class ;
+    rdfs:comment "Also referred to as \"Passthrough Mapping\" in some tools."^^xsd:string ;
+    rdfs:label "Identity mapping"^^xsd:string ;
+    rdfs:subClassOf :PropertyMapping ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:Ignore
+    a :MissingSourceValueHandlingType, :MissingValueMappingHandlingType ;
+    rdfs:label "Ignore"^^xsd:string .
+
+:Interval
+    a owl:Class ;
+    rdfs:label "Interval"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:Linear
+    a :ScaleTransformationType ;
+    rdfs:label "linear"^^xsd:string .
+
+:Logarithmic
+    a :ScaleTransformationType ;
+    rdfs:label "logarithmic"^^xsd:string .
+
+:Mapping
+    a owl:Class ;
+    rdfs:label "Mapping"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:Missing
+    a :MissingSourceValueHandlingType ;
+    rdfs:label "Missing"^^xsd:string .
+
+:MissingSourceValueHandlingType
+    a rdfs:Class ;
+    rdfs:label "Missing source value handling type"^^xsd:string ;
+    rdfs:subClassOf rdfs:Datatype .
+
+:MissingValueMappingHandlingType
+    a rdfs:Class ;
+    rdfs:label "Missing value mapping handling type"^^xsd:string ;
+    rdfs:subClassOf rdfs:Datatype .
+
+:Neutral
+    a :MissingSourceValueHandlingType, :MissingValueMappingHandlingType ;
+    rdfs:label "Neutral"^^xsd:string .
+
+:NeutralValueHandlingType
+    a rdfs:Class ;
+    rdfs:label "Neutral value handling type"^^xsd:string ;
+    rdfs:subClassOf rdfs:Datatype .
+
+:NoMapping
+    a :MissingValueMappingHandlingType ;
+    rdfs:label "No mapping"^^xsd:string ;
+    swstatus:term_status "unstable"^^xsd:string .
+
+:NoPropertyValueMapping
+    a owl:Class ;
+    rdfs:label "No-Property-Value-Mapping"^^xsd:string ;
+    rdfs:subClassOf :PropertyMapping .
+
+:OutOfBoundHandlingType
+    a rdfs:Class ;
+    rdfs:label "Out of bound handling type"^^xsd:string ;
+    rdfs:subClassOf rdfs:Datatype ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:PropertyMapping
+    a owl:Class ;
+    rdfs:comment "When a target graphic relation is used in multiple mappings, a warning should be issued, since ambiguities become possible."^^xsd:string ;
+    rdfs:label "Property Mapping"^^xsd:string ;
+    rdfs:subClassOf :Mapping ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:PropertyToGraphicAttributeMapping
+    a owl:Class ;
+    rdfs:label "Property-to-Graphic-Attribute Mapping"^^xsd:string ;
+    rdfs:subClassOf :PropertyMapping ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:PropertyToGraphicObjToObjRelationMapping
+    a owl:Class ;
+    rdfs:label "Property-to-Graphic-Object-to-Object-Relation Mapping"^^xsd:string ;
+    rdfs:subClassOf :PropertyMapping ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:RemoveTransitiveHull
+    a owl:Class ;
+    rdfs:label "Remove transitive hull"^^xsd:string ;
+    rdfs:subClassOf :Simplification ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:ResourceMapping
+    a owl:Class ;
+    rdfs:label "Resource mapping"^^xsd:string ;
+    rdfs:seeAlso :inheritedBy, :passedTo ;
+    rdfs:subClassOf :Mapping ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:ScaleTransformationType
+    a rdfs:Class ;
+    rdfs:label "Interpolation value"^^xsd:string ;
+    rdfs:subClassOf rdfs:Datatype .
+
+:Simplification
+    a owl:Class ;
+    rdfs:label "Simplification"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:SourceValueInterval
+    a owl:Class ;
+    rdfs:label "Source value interval"^^xsd:string ;
+    rdfs:subClassOf :Interval ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:Style
+    a :NeutralValueHandlingType ;
+    rdfs:label "Style"^^xsd:string .
+
+:SubMappingRelation
+    a owl:Class ;
+    rdfs:label "Sub-mapping relation"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:UnifyWithInverseAndPickOne
+    a owl:Class ;
+    rdfs:label "Unify with inverse and pick one"^^xsd:string ;
+    rdfs:subClassOf :Simplification ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:ValueMapping
+    a owl:Class ;
+    rdfs:comment "Since discrete values on the target site are distinguished and mapped to source values, only mappings to visual attributes - not to other visual relations - will typically have value mappings. In the case of graphic-object-to-object-relations, there are usually no various target values which need to be mapped explicitly. Since most are binary, there are only two - either the graphic relation exists or not. "^^xsd:string ;
+    rdfs:label "Value mapping"^^xsd:string ;
+    rdfs:subClassOf :Mapping ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:disabled
+    a owl:DatatypeProperty ;
+    rdfs:domain :Mapping ;
+    rdfs:label "disabled"^^xsd:string ;
+    rdfs:range xsd:boolean ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:discreteStepCount
+    a owl:DatatypeProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "discrete step count"^^xsd:string ;
+    rdfs:range xsd:int ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:discreteStepSize
+    a owl:DatatypeProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "discrete step size (deprecated)"^^xsd:string ;
+    rdfs:range xsd:float ;
+    rdfs:seeAlso :discreteStepCount ;
+    swstatus:term_status "unstable"^^xsd:string .
+
+:discretize
+    a owl:DatatypeProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "discretize"^^xsd:string ;
+    rdfs:range xsd:boolean ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:drawInterpolated
+    a rdf:Property ;
+    rdfs:comment "This flag will cause the graphic to show source values that do not exist in the raw dataset, but have only been interpolated! Therefore, this setting has to be done with care not to suggest the impression of continuous data, when only discrete source values exist."^^xsd:string ;
+    rdfs:domain :PropertyToGraphicAttributeMapping ;
+    rdfs:label "draw interpolated"^^xsd:string ;
+    rdfs:range xsd:boolean ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:excludeSourceValue
+    a owl:ObjectProperty ;
+    rdfs:comment "Excluding a value from the mapping does not mean that a resource with this value won't show up at all in the graphic. That is the task of filtering the data to visualize. It simply means that this value does not get a visual value assigned by this mapping. Hence, the default value for the visual attribute will be chosen instead. In this case it is important to chose a default value, that is not mixed up with a value that carries meaning! So the default value has to be chosen carefully."^^xsd:string ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "exclude source value"^^xsd:string ;
+    rdfs:range rdfs:Resource ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:excludeTargetValue
+    a owl:ObjectProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "exclude target value"^^xsd:string ;
+    rdfs:range viso-graphic:Visual_Attribute ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:fallsBackTo
+    a owl:IrreflexiveProperty, owl:ObjectProperty ;
+    rdfs:comment "We decided to allow the definitions of fall-backs on the level of mappings instead of the level of visual means,  to allow for context-dependent decisions. Still, fall-backs between visual means could be defined additionally in future versions of this vocabulary."^^xsd:string ;
+    rdfs:domain :Mapping ;
+    rdfs:label "falls back to"^^xsd:string ;
+    rdfs:range :Mapping ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:fslSelector
+    a rdfs:Datatype ;
+    rdfs:comment "FSL is the selector language used in Fresnel: http://www.w3.org/2005/04/fresnel-info/fsl/"^^xsd:string ;
+    rdfs:label "FSL selector"^^xsd:string ;
+    rdfs:subClassOf rdfs:Literal ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:includeInLegend
+    a owl:DatatypeProperty ;
+    rdfs:domain :Mapping ;
+    rdfs:label "include in legend"^^xsd:string ;
+    rdfs:range xsd:boolean ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:inheritedBy
+    a rdf:Property ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "inherited by"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:invertOrderOfTargetValues
+    a rdf:Property ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "invert order of target values"^^xsd:string ;
+    rdfs:range xsd:boolean ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:invertSourceProperty
+    a rdf:Property ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "invert source property"^^xsd:string ;
+    rdfs:range xsd:boolean ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:isExistentialPropertyMapping
+    a rdf:Property ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "is existential property mapping"^^xsd:string ;
+    rdfs:range xsd:boolean ;
+    swstatus:term_status "unstable"^^xsd:string .
+
+:lowerBoundExcl
+    a rdf:Property ;
+    rdfs:domain :Interval ;
+    rdfs:label "lower bound exclusive"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:lowerBoundIncl
+    a rdf:Property ;
+    rdfs:domain :Interval ;
+    rdfs:label "lower bound inclusive"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:mapMissingValuesTo
+    a rdf:Property ;
+    rdfs:comment "The range should be literals with string, int, float, boolean + discrete visual attributes"^^xsd:string ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "map missing values to"^^xsd:string ;
+    rdfs:range rdfs:Resource ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:missingSourceValue
+    a owl:DatatypeProperty ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "missing source value"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:missingValueMapping
+    a owl:DatatypeProperty ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "missing value mapping"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:neutralValue
+    a rdf:Property ;
+    rdfs:domain viso-graphic:GraphicRelation ;
+    rdfs:label "neutral value"^^xsd:string ;
+    rdfs:range rdfs:Resource ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:objectFilter
+    a owl:DatatypeProperty ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "object filter"^^xsd:string ;
+    rdfs:seeAlso :sourceFilter, :subjectFilter ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:orderSourceValuesBy
+    a owl:ObjectProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "order source values by"^^xsd:string ;
+    rdfs:range rdf:Property ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:orderTargetValuesBy
+    a owl:ObjectProperty ;
+    rdfs:comment "Using order properties in order to create an order between target values is discouraged, since this could generate a non-strict order. Lists are preferred to object properties here. Also selecting datatype properties can lead to a non-strict order. In both cases a warning should be issued, when multiple values are ranked equally."^^xsd:string ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "order target values by"^^xsd:string ;
+    rdfs:range rdf:Property ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:passedTo
+    a rdf:Property ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "passed to"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:preferredProperty
+    a owl:ObjectProperty ;
+    rdfs:domain :Simplification ;
+    rdfs:label "preferred property"^^xsd:string ;
+    rdfs:subPropertyOf :simplificationProperty ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:propertyToSimplify
+    a owl:ObjectProperty ;
+    rdfs:domain :Simplification ;
+    rdfs:label "property to simplify"^^xsd:string ;
+    rdfs:range rdf:Property ;
+    rdfs:subPropertyOf :simplificationProperty ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:quantifySourceValuesBy
+    a owl:ObjectProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "quantify source values by"^^xsd:string ;
+    rdfs:range rdf:Property ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:quantifyTargetValuesBy
+    a owl:ObjectProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "quantify target values by"^^xsd:string ;
+    rdfs:range rdf:Property ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:scaleTransformation
+    a owl:DatatypeProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "scale transformation type"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:similarProperty
+    a owl:ObjectProperty ;
+    rdfs:domain :UnifyWithInverseAndPickOne ;
+    rdfs:label "similar property"^^xsd:string ;
+    rdfs:subPropertyOf :simplificationProperty ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:simplificationProperty
+    a owl:ObjectProperty ;
+    rdfs:comment "Only needed as a container to sort subproperties nicely in the GUI-tree."^^xsd:string ;
+    rdfs:label "simplification property"^^xsd:string .
+
+:sourceFilter
+    a owl:DatatypeProperty ;
+    rdfs:comment "<b>Difference to objectFilter:</b> ObjectFilter used with property mappings can filter on the level of property mappings - allowing different graphic realtions to be applied depending on the filter. As opposed to this, sourceFilter only allows for filtering on the level of source values and should be used when the graphic relation is not varied based on the filtering, but only the values are varied. Properties such as sourceValueSet, sourceValue and sourceValueInterval partly work as filters as well and can more easily be used for most cases. For examle, with sourceValueSet existing sets can very easily be referenced. sourceFilter covers all other more complex filtering needs."^^xsd:string ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "source filter"^^xsd:string ;
+    rdfs:seeAlso :objectFilter, :sourceFilter ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:sourceProperty
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:comment "A sourceProperty always works as a basic filter, limiting the mapped statements to those where the predicate is the given sourceProperty. Note that addditional constraints on the statements to be mapped can be defined via constraining the subjects and objects (e.g. via subjectFilter)."^^xsd:string ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "source property"^^xsd:string ;
+    rdfs:range rdf:Property ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:sourceValue
+    a rdf:Property ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "source value"^^xsd:string ;
+    rdfs:range rdfs:Resource ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:sourceValueInterval
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "source interval"^^xsd:string ;
+    rdfs:range :SourceValueInterval ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:sourceValueOrderedSet
+    a owl:ObjectProperty ;
+    rdfs:comment "We don't need sourceValueList, since if we allowed duplicates in a list, the mapping would not be deterministic anymore."^^xsd:string ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "source value ordered set"^^xsd:string ;
+    rdfs:range rdf:List ;
+    rdfs:subPropertyOf :sourceValueSet ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:sourceValueSet
+    a owl:ObjectProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "source value set"^^xsd:string ;
+    rdfs:range rdf:List .
+
+:sourceValuesLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "source values label"^^xsd:string ;
+    rdfs:range xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:sourceValuesOutOfBounds
+    a owl:DatatypeProperty ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "source values out of bounds"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:sparqlSelector
+    a rdfs:Datatype ;
+    rdfs:label "SPARQL selector"^^xsd:string ;
+    rdfs:subClassOf rdfs:Literal ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:subGraphic
+    a rdf:Property ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "has sub-graphic"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:subMapping
+    a rdf:Property ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "has sub-mapping"^^xsd:string ;
+    rdfs:range :SubMappingRelation ;
+    rdfs:subPropertyOf :subMappingRelationProperty ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:subMapping-mapping
+    a rdf:Property, owl:FunctionalProperty ;
+    rdfs:domain :SubMappingRelation ;
+    rdfs:label "sub-mapping"^^xsd:string ;
+    rdfs:range :Mapping ;
+    rdfs:subPropertyOf :subMappingRelationProperty ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:subMapping-onRole
+    a rdf:Property, owl:FunctionalProperty ;
+    rdfs:domain :SubMappingRelation ;
+    rdfs:label "on role"^^xsd:string ;
+    rdfs:range viso-graphic:SyntacticRole ;
+    rdfs:subPropertyOf :subMappingRelationProperty ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:subMapping-onTriplePart
+    a rdf:Property ;
+    rdfs:domain :SubMappingRelation ;
+    rdfs:label "on triple part"^^xsd:string ;
+    rdfs:subPropertyOf :subMappingRelationProperty ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:subMappingRelationProperty
+    a rdf:Property ;
+    rdfs:label "sub mapping relation property"^^xsd:string .
+
+:subjectFilter
+    a owl:DatatypeProperty ;
+    rdfs:comment """CARDINALITY AND UNIVERSALITY:
+At the moment a subjectFilter is the only way to create mappings based on cardinality or universal restrictions. E.g. we can define a mapping (via a SPARQL expression) to be applied when a Person knows at least two other persons, or when a Person knows only books (but notthing else)."""^^xsd:string ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "subject filter"^^xsd:string ;
+    rdfs:seeAlso :objectFilter ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:targetAttribute
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:label "target attribute"^^xsd:string ;
+    rdfs:range viso-graphic:GraphicAttribute ;
+    rdfs:subPropertyOf :targetGraphicRelation ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:targetGraphicRelation
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:domain :PropertyMapping ;
+    rdfs:label "target graphic relation (abstract)"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:targetObjToObjRelation
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:domain :PropertyToGraphicObjToObjRelationMapping ;
+    rdfs:label "target object-to-object relation"^^xsd:string ;
+    rdfs:range viso-graphic:GraphicObjectToObjectRelation ;
+    rdfs:subPropertyOf :targetGraphicRelation ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:targetValue
+    a rdf:Property ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "target value"^^xsd:string ;
+    rdfs:range rdfs:Resource ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:targetValueCycle
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:comment "Use with care - c.f. targetValueList."^^xsd:string ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "target value cycle"^^xsd:string ;
+    rdfs:range viso-graphic:Visual_Value_List ;
+    rdfs:subPropertyOf :targetValues ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:targetValueInterval
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "target value interval"^^xsd:string ;
+    rdfs:range :GraphicAttributeInterval ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:targetValueList
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:comment "Same targets for different source values are usually not wanted in visualisation. As with targetValueCycle, ambiguous mappings could be the result! However, there may be cases where using a target value multiple times is acceptable and the absolute value is clear from context (e.g. isomeres)."^^xsd:string ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "target value list"^^xsd:string ;
+    rdfs:range viso-graphic:Visual_Value_List ;
+    rdfs:subPropertyOf :targetValues ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:targetValueOrderedSet
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "target value ordered set"^^xsd:string ;
+    rdfs:range viso-graphic:Visual_Value_List ;
+    rdfs:subPropertyOf :targetValues .
+
+:targetValueSet
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "target value set"^^xsd:string ;
+    rdfs:range viso-graphic:Visual_Value_List ;
+    rdfs:subPropertyOf :targetValues ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:targetValues
+    a owl:FunctionalProperty, owl:ObjectProperty ;
+    rdfs:comment """Abstract. Depending on the used subproperty, the Visual_Value_List will be interpreted as actually being only a set, ordered set, list or even a cyclic list. This approach was chosen, since we may want to use existing lists as either only a set, ignoring order, or we may want to state, that we want to use the list in a cyclic way.
+
+"""^^xsd:string ;
+    rdfs:domain :ValueMapping ;
+    rdfs:label "target values (abstract)"^^xsd:string ;
+    rdfs:range viso-graphic:Visual_Value_List ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:upperBoundExcl
+    a rdf:Property ;
+    rdfs:domain :Interval ;
+    rdfs:label "upper bound exclusive"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string, "unstable"^^xsd:string .
+
+:upperBoundIncl
+    a rdf:Property ;
+    rdfs:domain :Interval ;
+    rdfs:label "upper bound inclusive"^^xsd:string ;
+    swstatus:term_status "stable"^^xsd:string .
+
+:valueMapping
+    a owl:InverseFunctionalProperty, owl:ObjectProperty ;
+    rdfs:domain :PropertyToGraphicAttributeMapping ;
+    rdfs:label "value mapping"^^xsd:string ;
+    rdfs:range :ValueMapping ;
+    swstatus:term_status "stable"^^xsd:string .
+

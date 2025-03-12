@@ -1,0 +1,50 @@
+{
+    "citation": {
+        "source":"edam",
+        "text":"###  http://edamontology.org/citation\n:citation rdf:type owl:AnnotationProperty ;\n          :created_in \"1.13\" ;\n          oboLegacy:is_metadata_tag \"true\"^^xsd:boolean ;\n          oboInOwl:hasBroadSynonym \"Publication reference\" ;\n          oboInOwl:hasDefinition \"'Citation' concept property ('citation' metadata tag) contains a dereferenceable URI, preferably including a DOI, pointing to a citeable publication of the given data format.\" ;\n          oboInOwl:hasRelatedSynonym \"Publication\" ;\n          oboInOwl:inSubset :properties ;\n          rdfs:label \"Citation\" .\n\n###  http:/"},
+        
+        
+    "has_identifier": {
+        "source":"edam",
+        "text":":has_identifier rdf:type owl:ObjectProperty ;\n                owl:inverseOf :is_identifier_of ;\n                rdfs:domain :data_0006 ;\n                rdfs:range :data_0842 ;\n                oboLegacy:is_anti_symmetric \"false\" ;\n                oboLegacy:is_reflexive \"false\" ;\n                oboLegacy:is_symmetric \"false\" ;\n                oboLegacy:transitive_over \"OBO_REL:is_a\" ;\n                oboInOwl:hasDefinition \"'A has_identifier B' defines for the subject A, that it has the object B as its identifier.\" ;\n                oboInOwl:inSubset :properties ;\n                oboInOwl:isC"},
+    
+    "data_class":{
+        "source":"edam",
+        "text":":data_0006 rdf:type owl:Class ;\n           owl:disjointWith :format_1915 ,\n                            :operation_0004 ,\n                            :topic_0003 ,\n                            owl:DeprecatedClass ;\n           :created_in \"beta12orEarlier\" ;\n           :notRecommendedForAnnotation \"true\"^^xsd:boolean ;\n           oboInOwl:hasDefinition \"Information, represented in an information artefact (data record) that is 'understandable' by dedicated computational tools that can use the data as input or produce it as output.\" ;\n           oboInOwl:hasExactSynonym \"Data record\" ;\n           oboInOwl:hasNarrowSynonym \"Data set\" ,\n                                     \"Datum\""},
+    
+    "pmd_hasIdentifier":{
+        "source":"mds-onto",
+        "text":"pmd:hasIdentifier rdf:type owl:ObjectProperty ;\n                  rdfs:domain mds:BeamlineConfiguration ,\n                              mds:CroppingMethod ,\n                              mds:DarkCorrectionMethod1 ,\n                              mds:DarkCorrectionMethod2 ,\n                              mds:DetectorCalibration ,\n                              mds:DiffractionFrame ,\n                              mds:GravityMethod ,\n                              mds:Integration ,\n                              mds:Modeling ,\n                              mds:PhotovoltaicBacksheet ,\n                              mds:PhotovoltaicCell ,\n                              mds:PhotovoltaicInverter ,\n                              mds:PhotovoltaicModule ,\n                              mds:PhotovoltaicSite ,\n                              mds:PixelwiseCorrelation ,\n                              mds:RingSamplingMethod ,\n                              m"},
+    
+    "mds_architecture":{
+        "source":"mds-onto",
+        "text":"###  https://cwrusdle.bitbucket.io/mds#Architecture\nmds:Architecture rdf:type owl:Class ;\n                 rdfs:subClassOf mds:ModelingParameters ;\n                 rdfs:label \"Architecture\" ;\n                 skos:altLabel \"\" ;\n                 skos:definition \"Architecture of the model.\" .\n\n\n###  https://cwrusdle.bitbucket.io/mds#AzimuthRange\nmds:AzimuthRange rdf:type owl:Class ;\n                 rdfs:subClassOf mds:IntegrationOptions ;\n                 rdfs:label \"AzimuthRange\" ;\n                 skos:altLabel \"\" ;\n                 skos:definition \"The azimuthal integration range.\" .\n                 \n###  https://"},
+    
+    "pmd_composedOf":{
+        "source":"mds-onto",
+        "text":"pmd:composedOf rdf:type owl:ObjectProperty ;\n               rdfs:domain mds:BeamlineConfiguration ,\n                           mds:DetectorResolution ,\n                           mds:DiffractionFrame ,\n                           mds:PhotovoltaicModule ,\n                           mds:XrayRecipe ,\n                           pmd:Furnace ;\n               rdfs:range mds:BeamlineConfiguration ,\n                          mds:Calibration ,\n                          mds:DataCollection ,\n                          mds:DetectorParameters ,\n                          mds:ExperimentType ,\n                          mds:PhotovoltaicBacksheet ,\n                          mds:PhotovoltaicCell ,\n                          mds:PhotovoltaicInverter ,\n                          mds:PixelHeight ,\n                          mds:PixelWidth ,\n                          mds:XrayRecipe"},
+    
+    "igneous_rock":{
+        "source":"sweetAll",
+        "text":"<http://sweetontology.net/matrRockIgneous/CinderCone> rdfs:comment \"A volcanic cone built entirely of loose fragmented material (pyroclastics.)\"@en .\n\n\n<http://sweetontology.net/matrRockIgneous/CompositeCone> rdfs:comment \"A steep volcanic cone built by both lava flows and pyroclastic eruptions\"@en .\n\n\n<http://sweetontology.net/matrRockIgneous/Dacite> rdfs:comment \"Volcanic rock (or lava) that characteristically is light in color and contains 62% to 69% silica and moderate amounts of sodium and potassium.\"@en .\n\n\n<http://sweetontology.net/matr"},
+    
+    "hypabyssal_igneous":{
+        "source":"sweetAll",
+        "text":"<http://sweetontology.net/matrRockIgneous/Hypabyssal> rdfs:comment \"Hypabyssal are igneous rocks formed at a depth in between the plutonic and volcanic rocks. They are characterized by their porphyritic nature (porphyry). They consist of phenocrysts embedded in a fine-grained groundmass. [Wikipedia]\"@en .\n\n\n<http://sweetontology.net/matrRockIgneous/IgneousRock> rdfs:comment \"By definition, all igneous rock is formed from magma [Wikipedia]\"@en .\n\n\n<http://sweetontology.net/matrRockIgneous/IntrusiveRock> rdfs:comment \"Beneath \""},
+    
+    "diffusivity":{
+        "source":"sweetAll",
+        "text":"<http://sweetontology.net/propDiffusivity/Confluence> rdfs:comment \"The rate at which adjacent flow is converging along an axis oriented normal to the flow at the point in question.\"@en .\n\n\n<http://sweetontology.net/propDiffusivity/Diffluence> rdfs:comment \"The rate at which adjacent flow diverges along an axis oriented normal to the flow at the point in question; the opposite of confluence.\"@en .\n\n\n<http://sweetontology.net/propDiffusivity/EddyDiffusivity> rdfs:comment \"The exchange coefficient for the diffusion of a conservative property by eddies in a turbulent flow.\"@en .\n\n\n<http://sweetontology.net"},
+    
+    "iao_imported_from":{
+        "source":"agro",
+        "text":"###  http://purl.obolibrary.org/obo/IAO_0000412\nobo1:IAO_0000412 rdf:type owl:AnnotationProperty ;\n                 obo1:IAO_0000111 \"imported from\"@en ;\n                 obo1:IAO_0000114 obo1:IAO_0000125 ;\n                 obo1:IAO_0000115 \"For external terms/classes, the ontology from which the term was imported\"@en ;\n                 obo1:IAO_0000117 \"PERSON:Alan Ruttenberg\"@en ,\n                                  \"PERSON:Melanie Courtot\"@en ;\n                 obo1:IAO_0000119 \"GROUP:\""},
+    
+    "oboInOwl":{
+        "source":"agro",
+        "text":"###  http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym\noboInOwl:hasBroadSynonym rdf:type owl:AnnotationProperty .\n\n\n###  http://www.geneontology.org/formats/oboInOwl#hasDbXref\noboInOwl:hasDbXref rdf:type owl:AnnotationProperty .\n\n\n###  http://www.geneontology.org/formats/oboInOwl#hasExactSynonym\noboInOwl:hasExactSynonym rdf:type owl:AnnotationProperty .\n\n\n###  http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym\noboInOwl:hasNarrowSynonym"},
+
+    "bfo_realizes":{
+        "source":"agro",
+        "text":"obo1:BFO_0000055 rdf:type owl:ObjectProperty ;\n                 rdfs:domain obo1:BFO_0000015 ;\n                 rdfs:range obo1:BFO_0000017 ;\n                 obo1:IAO_0000111 \"realizes\"@en ;\n                 obo1:IAO_0000112 \"this disease course realizes this disease\"@en ,\n                                  \"this investigation realizes this investigator role\"@en ,\n                                  \"this shattering realizes this fragility\"@en ;\n                 obo1:IAO_0000600 \"to say that b realizes c at t is to assert that there is some material entity d & b is a process which has participant d at t & c is \""}
+}

@@ -5,8 +5,8 @@ from transformers import AutoTokenizer
 
 
 tokenizer = AutoTokenizer.from_pretrained(
-        "meta-llama/Meta-Llama-3-8B",
-        use_auth_token="your_token"
+        "meta-llama/Llama-3.2-1B",
+        use_auth_token="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"
     )
 
 
@@ -123,48 +123,48 @@ def calculate_totals_and_densities(concept_properties, g, n_classes):
 
 def list_properties_by_concept(file_path):
     """
-    Lista las propiedades (Object Properties y Data/Annotation Properties) asociadas a cada concepto en un archivo Turtle.
+    Lists the properties (Object Properties and Data/Annotation Properties) associated with each concept in a Turtle file.
 
-    :param file_path: Ruta al archivo TTL.
-    :return: Diccionario con conceptos como claves y sus propiedades diferenciadas como valores.
+    :param file_path: Path to the TTL file.
+    :return: Dictionary with concepts as keys and their categorized properties as values.
     """
-    # Cargar el archivo TTL en un grafo
+    # Load the TTL file into a graph
     g = Graph()
     g.parse(file_path, format="turtle")
 
-    # Identificar clases en el grafo
+    # Identify classes in the graph
     classes = identify_classes(g)
 
-    # Propiedades que deben ser excluidas explícitamente
+    # Properties that should be explicitly excluded
     excluded_object_properties = {
         URIRef("http://www.w3.org/2000/01/rdf-schema#subClassOf"),
         RDF.type
     }
 
-    # Diccionario para almacenar propiedades por concepto
+    # Dictionary to store properties by concept
     concept_properties = {}
 
-    # Recorrer las triples y asociar propiedades a conceptos
-    for s, p, o in g:
+    # Iterate over triples and associate properties with concepts
+    for s, p, o in g.triples((None, None, None)):
         if s in classes:
             if s not in concept_properties:
                 concept_properties[s] = {
-                    "object_properties": set(),
-                    "data_annotation_properties": set()
+                    "object_properties": [],
+                    "data_annotation_properties": []
                 }
 
-            # Identificar el tipo de propiedad en función de la naturaleza del objeto (o)
+            # Identify the property type based on the nature of the object (o)
             if isinstance(o, URIRef) and p not in excluded_object_properties:
-                # Si el objeto es un recurso (IRI) y no está en las propiedades excluidas, es una Object Property
-                concept_properties[s]["object_properties"].add(p)
-            elif not isinstance(o, URIRef):
-                # Si el objeto es un literal, es una Data/Annotation Property
-                concept_properties[s]["data_annotation_properties"].add(p)
+                # If the object is a resource (IRI) and is not in the excluded properties, it is an Object Property
+                concept_properties[s]["object_properties"].append(p)
+            elif not isinstance(o, URIRef) and p not in excluded_object_properties:
+                # If the object is a literal, it is a Data/Annotation Property
+                concept_properties[s]["data_annotation_properties"].append(p)
 
-    # Convertir los conjuntos de propiedades a listas para facilitar la lectura
+    # Convert property sets to lists for easier readability
     return {
         concept: {
-            "type": classes[concept]["type"],  # Agregar el tipo de clase al resultado
+            "type": classes[concept]["type"],  # Add the class type to the result
             "object_properties": list(properties["object_properties"]),
             "data_annotation_properties": list(properties["data_annotation_properties"]),
         }
@@ -179,8 +179,10 @@ def count_subclasses_and_average(g, total_classes):
     :param total_classes: Número total de clases identificadas.
     :return: Diccionario con el total de subclases y el promedio por clase.
     """
-    total_subclasses = sum(1 for _ in g.triples((None, RDFS.subClassOf, None)))
+    subclasses = {str(s) for s, p, o in g.triples((None, RDFS.subClassOf, None))}  # Use a set to ensure uniqueness
+    total_subclasses = len(subclasses)
     average_subclasses = total_subclasses / total_classes if total_classes > 0 else 0
+
     return {"total_subclasses": total_subclasses, "average_subclasses_per_class": average_subclasses}
 
 def count_tokens_in_file(file_path):
@@ -228,12 +230,47 @@ def process_ttl_file(file_path):
         return None
 
 
+def min_max_normalize(series):
+    """Applies Min-Max normalization to a Pandas Series."""
+    return (series - series.min()) / (series.max() - series.min())
+
+def add_normalized_columns(df):
+    """Adds normalized columns for Property Density, Average Non-Taxonomic Relations, and Average Subclasses."""
+    df["norm(Property Density by Class)"] = min_max_normalize(df["Property Density"])
+    df["norm(Average Non-Taxonomic Relations by Class)"] = min_max_normalize(df["Average Non-Taxonomic Relations per Class"])
+    df["norm(Average Subclasses by Class)"] = min_max_normalize(df["Average Subclasses per Class"])
+    return df
+
+def compute_quality_score(df):
+    """Computes the Quality Score as the sum of normalized metrics."""
+    df["Quality Score"] = (
+        df["norm(Property Density by Class)"] +
+        df["norm(Average Non-Taxonomic Relations by Class)"] +
+        df["norm(Average Subclasses by Class)"]
+    )
+    return df
+
+def compute_token_accumulation(df):
+    """Computes cumulative token count and percentage accumulation."""
+    df = df.sort_values(by="Quality Score", ascending=False)
+    df["Token Count Acumulation"] = df["Total Tokens"].cumsum()
+    df["Percentage of Token Count Acumulation"] = df["Token Count Acumulation"] / df["Token Count Acumulation"].iloc[-1] * 100
+    return df
+
+def process_ontology_metrics(file_path):
+    """Loads, processes, and saves the ontology metrics dataframe with all computed metrics."""
+    df = pd.read_excel(file_path)
+    df = add_normalized_columns(df)
+    df = compute_quality_score(df)
+    df = compute_token_accumulation(df)
+    df.to_excel(file_path, index=False)
+    return df
+
+
 if __name__ == "__main__":
     # Folder containing the TTL files
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    print(current_dir)
-    folder_path = "C:\\Users\\gplsi\\OneDrive - UNIVERSIDAD ALICANTE\\PhD\\v4\\LLM4Onto\\LLM4Onto\\src\\data_preparation\\quality_metrics\\ttl"  # Change this to the actual folder path
-    output_excel = "ontology_metrics.xlsx"
+    folder_path = "./../../data/full_dataset"  # Change this to the actual folder path
+    output_excel = "./../../outputs/ontology_metrics.xlsx"
 
     # Initialize an empty DataFrame
     columns = [
@@ -260,6 +297,7 @@ if __name__ == "__main__":
                 
                 # Save the updated DataFrame to Excel
                 df.to_excel(output_excel, index=False)
-                print(f"Metrics for {file_name} saved to {output_excel}")
+                # print(f"Metrics for {file_name} saved to {output_excel}")
+    df = process_ontology_metrics(output_excel)
 
     print(f"Processing complete. Final results saved to {output_excel}")

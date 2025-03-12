@@ -1,0 +1,473 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix : <http://purl.obolibrary.org/obo/iao/pno/dev/pno.owl/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix dcterms: <dcterms:> .
+@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
+
+obo:BFO_0000050
+    a owl:ObjectProperty .
+
+obo:FMA_49443
+    a owl:Class ;
+    rdfs:label "Anatomical cluster"@en ;
+    rdfs:subClassOf obo:FMA_67135 .
+
+obo:FMA_55457
+    a owl:Class ;
+    rdfs:label "vocal fold"@en ;
+    rdfs:subClassOf obo:FMA_64854 .
+
+obo:FMA_64854
+    a owl:Class ;
+    rdfs:label "Subdivision of larynx"@en ;
+    rdfs:subClassOf obo:FMA_64989 .
+
+obo:FMA_64989
+    a owl:Class ;
+    rdfs:label "Heterogeneous cluster"@en ;
+    rdfs:subClassOf obo:FMA_49443 .
+
+obo:FMA_67135
+    a owl:Class ;
+    rdfs:label "Anatomical structure"@en ;
+    rdfs:subClassOf obo:FMA_67165 .
+
+obo:FMA_67165
+    a owl:Class ;
+    rdfs:label "Material anatomical entity"@en ;
+    rdfs:subClassOf obo:BFO_0000040 .
+
+obo:IAO_0000111
+    a owl:AnnotationProperty ;
+    rdfs:label "editor preferred label"@en, "editor preferred term", "editor preferred term"@en .
+
+obo:IAO_0000112
+    a owl:AnnotationProperty .
+
+obo:IAO_0000114
+    a owl:AnnotationProperty .
+
+obo:IAO_0000115
+    a owl:AnnotationProperty .
+
+obo:IAO_0000116
+    a owl:AnnotationProperty .
+
+obo:IAO_0000117
+    a owl:AnnotationProperty .
+
+obo:IAO_0000118
+    a owl:AnnotationProperty .
+
+obo:IAO_0000119
+    a owl:AnnotationProperty .
+
+obo:IAO_0000219
+    a owl:ObjectProperty .
+
+obo:IAO_0000231
+    a owl:AnnotationProperty .
+
+obo:IAO_0000412
+    a owl:AnnotationProperty ;
+    rdfs:label "imported from"@en .
+
+obo:IAO_0020000
+    obo:IAO_0000115 "An identifier is an information content entity that is the outcome of a dubbing process and is used to refer to one instance of entity shared by a group of people to refer to that individual entity."@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    obo:IAO_0000118 "proper name"@en ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:Class ;
+    rdfs:comment "Sep 29, 2016: The current definition has been amended from the previous version: \"A proper name is an information content entity that is the outcome of a dubbing process and is used to refer to one instance of entity shared by a group of people to refer to that individual entity.\" to more accuratly reflect the necessary and sufficient condition on the class. (MB)"@en ;
+    rdfs:label "identifier"@en ;
+    rdfs:subClassOf obo:IAO_0000030 ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf ([
+                a owl:Restriction ;
+                owl:onProperty obo:IAO_0000219 ;
+                owl:someValuesFrom obo:BFO_0000001
+            ]
+            [
+                a owl:Restriction ;
+                owl:allValuesFrom obo:IAO_0020010 ;
+                owl:onProperty obo:OBI_0000312
+            ]
+        )
+    ] .
+
+obo:IAO_0020001
+    obo:IAO_0000112 "alphabetic letters, Chinese characters, numerical digits, punctuation marks, and the individual symbols of any of the world's writing systems"@en ;
+    obo:IAO_0000115 "A grapheme  is an information content entity that is a fundamental unit in a written language. "@en ;
+    obo:IAO_0000119 "http://en.wikipedia.org/wiki/Grapheme" ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:Class ;
+    rdfs:label "grapheme"@en ;
+    rdfs:subClassOf obo:IAO_0000030 .
+
+obo:IAO_0020002
+    obo:IAO_0000115 "An utterance is an information content entity that is a complete unit of speech in spoken language. "@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    obo:IAO_0000119 "Wikipedia: http://en.wikipedia.org/wiki/Utterance" ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:Class ;
+    rdfs:label "utterance"@en ;
+    rdfs:subClassOf obo:IAO_0000030 .
+
+obo:IAO_0020003
+    obo:IAO_0000115 "An attributive collection of qualities inhering in energy when transported through a medium in a wave."@en ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:Class ;
+    rdfs:label "mechanical wave quality"@en ;
+    rdfs:subClassOf obo:BFO_0000019 .
+
+obo:IAO_0020004
+    obo:IAO_0000115 "is a quality that is the concretization of graphemes and inheres in a material object."@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:Class ;
+    rdfs:label "writing quality"@en ;
+    rdfs:subClassOf obo:BFO_0000019 .
+
+obo:IAO_0020005
+    obo:IAO_0000112 "pieces of paper, tables, walls, floors, driveways, highway signs, computer screens, skin, tablets of clay, rocks, sheets of metal (license plates), sheets of papyrus, etc.   clouds of smoke in skywriting,"@en ;
+    obo:IAO_0000115 "is a material information bearer that bears the concretization of graphemes."@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:Class ;
+    rdfs:label "writing bearer" ;
+    rdfs:subClassOf obo:IAO_0000178 ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (obo:IAO_0000178
+            [
+                a owl:Restriction ;
+                owl:onProperty obo:RO_0000053 ;
+                owl:someValuesFrom [
+                    a owl:Restriction ;
+                    owl:onProperty obo:RO_0000059 ;
+                    owl:someValuesFrom obo:IAO_0020001
+                ]
+            ]
+        )
+    ] .
+
+obo:IAO_0020006
+    a owl:Class ;
+    rdfs:label "portion of energy"@en ;
+    rdfs:subClassOf obo:BFO_0000004 .
+
+obo:IAO_0020007
+    obo:IAO_0000115 "Energy that is transported in a sound wave."@en ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:Class ;
+    rdfs:label "sound energy"@en ;
+    rdfs:subClassOf obo:IAO_0020006 ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (obo:IAO_0020006
+            [
+                a owl:Restriction ;
+                owl:onProperty obo:RO_0000053 ;
+                owl:someValuesFrom obo:IAO_0020003
+            ]
+            [
+                a owl:Restriction ;
+                owl:onProperty obo:RO_0000056 ;
+                owl:someValuesFrom [
+                    a owl:Class ;
+                    owl:intersectionOf (obo:IAO_0020009
+                        [
+                            a owl:Restriction ;
+                            owl:onProperty obo:RO_0000057 ;
+                            owl:someValuesFrom [
+                                a owl:Class ;
+                                owl:intersectionOf (obo:BFO_0000040
+                                    [
+                                        a owl:Restriction ;
+                                        owl:onProperty obo:RO_0000053 ;
+                                        owl:someValuesFrom obo:PATO_0001025
+                                    ]
+                                )
+                            ]
+                        ]
+                    )
+                ]
+            ]
+        )
+    ] .
+
+obo:IAO_0020008
+    obo:IAO_0000115 "Sound energy bearing the concretization of an utterance and being the output of an uttering process. "@en ;
+    a owl:Class ;
+    rdfs:label "utterance energy"@en ;
+    rdfs:subClassOf obo:IAO_0020007 ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (obo:IAO_0020007
+            [
+                a owl:Restriction ;
+                owl:onProperty obo:RO_0000053 ;
+                owl:someValuesFrom [
+                    a owl:Restriction ;
+                    owl:onProperty obo:RO_0000059 ;
+                    owl:someValuesFrom obo:IAO_0020002
+                ]
+            ]
+            [
+                a owl:Restriction ;
+                owl:allValuesFrom obo:IAO_0020011 ;
+                owl:onProperty obo:OBI_0000312
+            ]
+        )
+    ] .
+
+obo:IAO_0020009
+    obo:IAO_0000115 "Oscillating is a processual that shows repetitive variation, typically in time, of some measured quality about a central value (often a point of equilibrium) or between two or more different states."@en ;
+    obo:IAO_0000119 "http://en.wikipedia.org/wiki/Oscillation" ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:Class ;
+    rdfs:label "oscillating"@en ;
+    rdfs:subClassOf obo:BFO_0000015 .
+
+obo:IAO_0020010
+    obo:IAO_0000115 "An identifier creating process is a planned process that provides a reference to an individual entity shared by a group of subscribers to refer to that individual entity."@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    obo:IAO_0000118 "dubbing process"@en, "naming"@en ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:Class ;
+    rdfs:label "identifier creating process"@en ;
+    rdfs:subClassOf obo:OBI_0000011 ;
+    owl:equivalentClass [
+        a owl:Restriction ;
+        owl:onProperty obo:OBI_0000299 ;
+        owl:someValuesFrom obo:IAO_0020000
+    ] .
+
+obo:IAO_0020011
+    obo:IAO_0000115 "is a planned process of making speech sounds which may or may not have an actual language involved. "@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    obo:IAO_0000119 "http://en.wiktionary.org/wiki/utter"@en ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:Class ;
+    rdfs:label "utterance process"@en ;
+    rdfs:subClassOf obo:OBI_0000011 ;
+    owl:equivalentClass [
+        a owl:Restriction ;
+        owl:onProperty obo:OBI_0000299 ;
+        owl:someValuesFrom obo:IAO_0020008
+    ] .
+
+obo:IAO_0020012
+    obo:IAO_0000115 "x designates y, if for any given group of language users, x is an information content entity, is about y, and represents y in a linguistic context.."@en ;
+    obo:IAO_0000231 obo:IAO_0000228 ;
+    obo:IAO_0100001 obo:IAO_0000219 ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:ObjectProperty ;
+    rdfs:label "obsolete_designates"@en ;
+    rdfs:subPropertyOf oboInOwl:ObsoleteProperty ;
+    owl:deprecated true .
+
+obo:IAO_0020013
+    obo:IAO_0000115 "x is_borrowed_reference_for y, if x is a proper name that is used to refer to one individual among a specific group after the dubbing process took place."@en ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:AsymmetricProperty, owl:IrreflexiveProperty, owl:ObjectProperty ;
+    rdfs:domain obo:IAO_0020000 ;
+    rdfs:label "is_borrowed_reference_to"@en ;
+    rdfs:range obo:BFO_0000001 ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+obo:IAO_0020014
+    obo:IAO_0000115 "x is_fixed_reference_for y, if x is an utterance or graphemes concretized as writing quality inhering in some independent continuant that is used to single out one individual and refer to the latter among a specific group after the."@en ;
+    dc:creator "Mathias Brochhausen" ;
+    a owl:AsymmetricProperty, owl:IrreflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "is_fixing_reference_to"@en .
+
+obo:IAO_0020015
+    obo:IAO_0000115 "A personal name is a proper name identifying an individual person."@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    obo:IAO_0000119 "http://en.wikipedia.org/wiki/Personal_name" ;
+    a owl:Class ;
+    rdfs:comment "Personal names \"today usually comprises a given name bestowed at birth or at a young age plus a surname. It is nearly universal for a human to have a name; except in rare cases, for example feral children growing up in isolation, or infants orphaned by natural disaster for whom no written record survives.[citation needed] The Convention on the Rights of the Child specifies that a child has the right from birth to a name. Certain isolated tribes, such as the Machiguenga of the Amazon, also lack personal names.\" (http://en.wikipedia.org/wiki/Personal_name)"@en, "Sep 29, 2016: The comment that including the wikipedia definition of personal name is not to be interpreted in a way that restricts this class to only contain strings of letters. A numerical or alphanumerical identifier that denotes a human is being is a personal name, too. (MB)"@en ;
+    rdfs:label "personal name"@en ;
+    rdfs:subClassOf obo:IAO_0020000 ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (obo:IAO_0020000
+            [
+                a owl:Restriction ;
+                owl:allValuesFrom obo:NCBITaxon_9606 ;
+                owl:onProperty obo:IAO_0000219
+            ]
+        )
+    ] .
+
+obo:IAO_0020016
+    obo:IAO_0000115 "A given name, in Western contexts often referred to as a first name, is a personal name that specifies and differentiates between members of a group of individuals, especially in a family, all of whose members usually share the same family name (surname). A given name is purposefully given, usually by a child's parents at or near birth, in contrast to an inherited one such as a family name"@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    obo:IAO_0000119 "http://en.wikipedia.org/wiki/Given_name" ;
+    a owl:Class ;
+    rdfs:label "given name"@en ;
+    rdfs:subClassOf obo:IAO_0020015, [
+        a owl:Restriction ;
+        owl:onProperty obo:BFO_0000050 ;
+        owl:someValuesFrom obo:IAO_0020015
+    ] .
+
+obo:IAO_0020017
+    obo:IAO_0000115 "A family name (in Western contexts often referred to as a surname or last name) is typically a part of a person's name which has been passed, according to law or custom, from one or both parents to their children."@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    obo:IAO_0000119 "http://en.wikipedia.org/wiki/Family_name" ;
+    a owl:Class ;
+    rdfs:label "family name"@en ;
+    rdfs:subClassOf obo:IAO_0020015, [
+        a owl:Restriction ;
+        owl:onProperty obo:BFO_0000050 ;
+        owl:someValuesFrom obo:IAO_0020015
+    ] .
+
+obo:IAO_0020018
+    obo:IAO_0000115 "p1 is designated by p2, if p2 is an information content entity that represents p1 in a linguistic context."@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    a owl:AsymmetricProperty, owl:IrreflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "is designated by"@en .
+
+obo:IAO_0020019
+    obo:IAO_0000111 "instance unique identifier"@en ;
+    a owl:AnnotationProperty ;
+    rdfs:comment "An annotation to be applied to individuals only.  Value is a GUID/UUID for use in a referent tracking system."@en ;
+    rdfs:label "IUI" .
+
+obo:IAO_0020020
+    obo:IAO_0000115 "An information content entity that is a collection of other information content entities that has been created to identify or annotate core ideas of a specified domain, and where the intention of its creators is that the aggregated entities have a one-to-one correspondence with entities in reality outside the aggregate."@en ;
+    obo:IAO_0000117 "Mathias Brochhausen" ;
+    obo:IAO_0000118 "code map"@en, "code system"@en, "codeset"@en, "coding system"@en, "controlled vocabulary"@en ;
+    dc:contributor "Clint Dowland", "Matt Diller", "Sarah Bost", "William R. Hogan" ;
+    a owl:Class ;
+    rdfs:comment "Does not imply absence vs. presence of any taxonomy."@en, "Does not imply that aggregated entities denote particulars, universals, or defined classes (a.k.a. attributive collections) or even that they denote only one of these three types of entities."@en, """Each aggregated entity is often (but not necessarily) associated with a text string—variously called a “description,” “name,” “title,” or “label”—that helps humans reach the target of denotation.
+
+When there is no such string, it is almost always because the entities take the form of human language words. For example, a “sex” or “gender” code set could contain “MALE” and “FEMALE,” or even “M” and “F” (by convention, we understand what these mean)."""@en, "For National Drug Codes (NDCs) and similar code sets, there doesn’t even have to be a single, fully-concretized copy somewhere (for example, for NDCs there is no centralized database or repository where they all live as one instance of concretization of code set). The code set can be “distributively” concretized. This seems like an unusual exception, but it also likely applies to Universal Product Codes (UPCs) and their follow on Global Trade Item Numbers (GTINs)."@en, "For each given domain, there can potentially exist multiple code sets. The multiplicity of code sets is partially due to the different specific purposes of those code sets."@en, "Many code sets are created for a specific purpose in addition to merely identifying or annotating core ideas of a specified domain."@en, "The information content entities do not denote each other."@en ;
+    rdfs:label "code set"@en ;
+    rdfs:subClassOf obo:IAO_0000030, [
+        a owl:Restriction ;
+        owl:onProperty obo:BFO_0000051 ;
+        owl:someValuesFrom obo:IAO_0000030
+    ] .
+
+obo:IAO_0100001
+    a owl:AnnotationProperty .
+
+obo:NCBITaxon_9606
+    obo:IAO_0000111 "Homo sapiens"@en ;
+    obo:IAO_0000118 "human being"^^xsd:string ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/ncbitaxon.owl> ;
+    a owl:Class ;
+    rdfs:label "Homo sapiens"@en ;
+    rdfs:subClassOf obo:OBI_0100026 .
+
+obo:OBI_0000299
+    a owl:ObjectProperty ;
+    rdfs:label "has_specified_output"@en ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+obo:OBI_0000312
+    a owl:ObjectProperty ;
+    rdfs:label "is_specified_output_of" ;
+    rdfs:range obo:OBI_0000011 .
+
+obo:OBI_0100026
+    obo:IAO_0000111 "organism"@en ;
+    obo:IAO_0000112 "animal"@en, "fungus"@en, "plant"@en, "virus"@en ;
+    obo:IAO_0000114 obo:IAO_0000121 ;
+    obo:IAO_0000115 "A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs."@en ;
+    obo:IAO_0000116 "10/21/09: This is a placeholder term, that should ideally be imported from the NCBI taxonomy, but the high level hierarchy there does not suit our needs (includes plasmids and 'other organisms')"^^xsd:string, """13-02-2009:
+OBI doesn't take position as to  when an organism starts or ends being an organism - e.g. sperm, foetus.
+This issue is outside the scope of OBI."""^^xsd:string ;
+    obo:IAO_0000117 "GROUP: OBI Biomaterial Branch"^^xsd:string ;
+    obo:IAO_0000119 "WEB: http://en.wikipedia.org/wiki/Organism"@en ;
+    a owl:Class ;
+    rdfs:label "organism"@en ;
+    rdfs:subClassOf obo:BFO_0000040 .
+
+obo:PATO_0001025
+    oboInOwl:hasDefinition _:genid41 ;
+    oboInOwl:hasOBONamespace "quality" ;
+    oboInOwl:inSubset <http://purl.org/obo/owl/obo#attribute_slim> ;
+    a owl:Class ;
+    rdfs:label "pressure"@en ;
+    rdfs:subClassOf obo:BFO_0000019 .
+
+obo:RO_0000052
+    a owl:ObjectProperty .
+
+obo:RO_0000053
+    a owl:ObjectProperty ;
+    rdfs:label "bearer_of"@en .
+
+obo:RO_0000056
+    a owl:ObjectProperty .
+
+obo:RO_0000057
+    a owl:ObjectProperty ;
+    rdfs:label "has_participant" .
+
+obo:RO_0000058
+    obo:IAO_0000111 "is concretized as"@en ;
+    obo:IAO_0000412 "http://purl.obolibrary.org/obo/obi.owl"^^xsd:string ;
+    a owl:ObjectProperty ;
+    rdfs:domain obo:BFO_0000031 ;
+    rdfs:label "is concretized as"@en ;
+    rdfs:range obo:BFO_0000020 ;
+    rdfs:subPropertyOf owl:topObjectProperty ;
+    owl:inverseOf obo:RO_0000059 .
+
+obo:RO_0000059
+    obo:IAO_0000111 "concretizes"@en ;
+    obo:IAO_0000412 "http://purl.obolibrary.org/obo/obi.owl"^^xsd:string ;
+    a owl:ObjectProperty ;
+    rdfs:domain obo:BFO_0000020 ;
+    rdfs:label "concretizes"@en ;
+    rdfs:range obo:BFO_0000031 ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+<http://purl.obolibrary.org/obo/iao/pno.owl>
+    obo:IAO_0000597 "IAO_0020000-IAO_0020999" ;
+    dc:contributor "William R. Hogan" ;
+    dc:creator "Mathias Brochhausen" ;
+    dc:identifier "PNO" ;
+    dc:license "http://creativecommons.org/licenses/by/4.0/"^^xsd:string ;
+    dc:title "proper name ontology"@en ;
+    a owl:Ontology ;
+    owl:imports <http://purl.obolibrary.org/obo/iao.owl> ;
+    owl:versionIRI <http://purl.obolibrary.org/obo/iao/pno/release/2021-06-11/pno.owl> ;
+    owl:versionInfo "release version 2021-06-11"@en .
+
+dc:creator
+    a owl:AnnotationProperty .
+
+dc:license
+    a owl:AnnotationProperty .
+
+oboInOwl:ObsoleteProperty
+    a owl:ObjectProperty .
+
+oboInOwl:hasDefinition
+    a owl:AnnotationProperty .
+
+oboInOwl:hasOBONamespace
+    a owl:AnnotationProperty .
+
+oboInOwl:inSubset
+    a owl:AnnotationProperty .
+
+rdfs:label
+    rdfs:label "label" .
+
