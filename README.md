@@ -5,7 +5,7 @@ LLM4Onto is a framework designed to **evaluate ontology quality** and **generate
 1. **Quality Metrics**: Analyzing and selecting high-quality ontologies.
 2. **Ontology Generation**: Using a fine-tuned LLM to expand or generate ontologies, evaluated manually.
 
-![LLM4Onto Methodology](methodology.jpg)
+![LLM4Onto Methodology](image/methodology.jpg)
 
 ---
 
