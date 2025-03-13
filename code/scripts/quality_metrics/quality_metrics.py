@@ -6,7 +6,7 @@ from transformers import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained(
         "meta-llama/Llama-3.2-1B",
-        use_auth_token="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"
+        use_auth_token="your_token"
     )
 
 
@@ -269,9 +269,8 @@ def process_ontology_metrics(file_path):
 
 if __name__ == "__main__":
     # Folder containing the TTL files
-    # folder_path = "./../../data/ontology_repository" 
-    folder_path = "./../../data/sample"  # Change this to the actual folder path
-    output_excel = "./../../outputs/ontology_metrics.xlsx"
+    folder_path = "/app/data/ontology_repository" 
+    output_excel = "/app/outputs/ontology_metrics.xlsx"
 
     # Initialize an empty DataFrame
     columns = [

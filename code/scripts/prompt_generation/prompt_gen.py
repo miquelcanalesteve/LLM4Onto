@@ -8,6 +8,7 @@ PROMPTS_FILE = "prompts.json"  # JSON file storing unique prompts
 OUTPUT_FILE = "/app/outputs/generated_ontologies.json"
 GPU_ID = 0
 MAX_LENGTH = 450
+TOKEN = "your_token" # Can be anything if the model is loaded locally
 
 
 def load_prompts(file_path):
@@ -31,8 +32,8 @@ def load_model():
     device = torch.device(f"cuda:{GPU_ID}" if torch.cuda.is_available() and torch.cuda.device_count() > GPU_ID else "cpu")
     print(f"Using {device} for text generation.")
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH,use_auth_token="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")
-    model = AutoModelForCausalLM.from_pretrained(MODEL_PATH,use_auth_token="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").to(device)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH,use_auth_token=TOKEN)
+    model = AutoModelForCausalLM.from_pretrained(MODEL_PATH,use_auth_token=TOKEN).to(device)
 
     return tokenizer, model, device
 

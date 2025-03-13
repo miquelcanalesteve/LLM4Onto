@@ -33,7 +33,7 @@ docker-compose up --build -d
 
 To access the running container:
 ```sh
-docker exec -it ontology-generation bash
+docker exec -it docker-llm4onto-1 bash
 ```
 
 If you want to run it outside the container, ensure you have **Python ≥3.8** and install the required libraries:
@@ -99,7 +99,7 @@ A sample of the expected output is included in the `generated_ontologies.json` f
 
 ---
 
-## 📊 Performance Considerations
+## Performance Considerations
 
 - ✅ **Uses GPU if available** for faster processing.  
 - ✅ **Incremental saving** prevents loss of generated outputs.  
