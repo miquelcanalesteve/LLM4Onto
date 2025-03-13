@@ -6,7 +6,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.data_prep
     volumes:
-      - ../src/data_preparation:/app/data_prep
+      - ../scripts/data_preparation:/app/data_prep
       - ../outputs:/app/outputs
       - ../data:/app/data
     command: sleep infinity  

@@ -3,9 +3,9 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # Global Configuration
-MODEL_PATH = "/workspace/NAS/GPLSI/llm-train-tokenizer-custom-dataset-main/modelos/Llama-3.2-1B_df_calidad_alta/epoch_4"
+MODEL_PATH = "" #local or HuggingFace
 PROMPTS_FILE = "prompts.json"  # JSON file storing unique prompts
-OUTPUT_FILE = "generated_texts_test_df_high_quality_e4_150_to_450_p1.json"
+OUTPUT_FILE = "generated_ontologies.json"
 GPU_ID = 4
 MAX_LENGTH = 450
 

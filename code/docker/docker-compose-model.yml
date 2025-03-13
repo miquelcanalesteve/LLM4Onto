@@ -7,7 +7,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.model
     volumes:
-      - ../src/model:/app/model
+      - ../scripts/model:/app/model
       - ../data:/app/data
     command: sleep infinity  
     deploy:
@@ -15,5 +15,5 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              device_ids: ["0", "3", "4"]
+              count: all
               capabilities: [gpu]
