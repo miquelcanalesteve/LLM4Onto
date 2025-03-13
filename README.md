@@ -58,7 +58,7 @@ To generate ontologies using an LLM loaded locally or from HuggingFace:
 │   ├── prompt_generation/  # Ontology generation scripts
 │   ├── quality_metrics/     # Quality evaluation scripts
 │
-├── results/             # Processed metrics and evaluations
+├── results/             # Processed metrics and evaluations with Dbpedia Archivo
 │
 ├── image/               # Visual documentation and methodology images
 │
