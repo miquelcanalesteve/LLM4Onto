@@ -42,7 +42,7 @@ To generate ontologies using a fine-tuned LLM:
 
 ---
 
-## 📂 Repository Structure
+<!-- ## 📂 Repository Structure
 ```
 ├── data/                # Example ontologies for testing
 ├── outputs/             # Generated ontologies and quality metrics
@@ -52,7 +52,7 @@ To generate ontologies using a fine-tuned LLM:
 ├── README.md            # General documentation (this file)
 ```
 
----
+--- -->
 
 ## 🔍 Additional Notes
 - **Three example ontologies** are provided in `data/`, with corresponding outputs.
