@@ -1,10 +1,10 @@
 # Dockerfile.model
-FROM nvcr.io/nvidia/pytorch:24.02-py3
+FROM python:3.10
 
 WORKDIR /app
 
 # Copy dependencies and install them
-COPY requirements/requirements_model.txt /app/requirements.txt
+COPY requirements/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Keep the container open for manual script execution

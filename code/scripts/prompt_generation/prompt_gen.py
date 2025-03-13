@@ -3,10 +3,10 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # Global Configuration
-MODEL_PATH = "" #local or HuggingFace
+MODEL_PATH = "meta-llama/Llama-3.2-1B" #Local or HuggingFace
 PROMPTS_FILE = "prompts.json"  # JSON file storing unique prompts
-OUTPUT_FILE = "generated_ontologies.json"
-GPU_ID = 4
+OUTPUT_FILE = "/app/outputs/generated_ontologies.json"
+GPU_ID = 0
 MAX_LENGTH = 450
 
 
@@ -31,8 +31,8 @@ def load_model():
     device = torch.device(f"cuda:{GPU_ID}" if torch.cuda.is_available() and torch.cuda.device_count() > GPU_ID else "cpu")
     print(f"Using {device} for text generation.")
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-    model = AutoModelForCausalLM.from_pretrained(MODEL_PATH).to(device)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH,use_auth_token="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")
+    model = AutoModelForCausalLM.from_pretrained(MODEL_PATH,use_auth_token="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").to(device)
 
     return tokenizer, model, device
 

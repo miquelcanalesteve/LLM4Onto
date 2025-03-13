@@ -269,7 +269,8 @@ def process_ontology_metrics(file_path):
 
 if __name__ == "__main__":
     # Folder containing the TTL files
-    folder_path = "./../../data/full_dataset"  # Change this to the actual folder path
+    # folder_path = "./../../data/ontology_repository" 
+    folder_path = "./../../data/sample"  # Change this to the actual folder path
     output_excel = "./../../outputs/ontology_metrics.xlsx"
 
     # Initialize an empty DataFrame

@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  llm4onto:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../scripts:/app/scripts
+      - ../outputs:/app/outputs
+      - ../data:/app/data
+    command: sleep infinity  
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

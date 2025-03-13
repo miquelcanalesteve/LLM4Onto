@@ -1,9 +1,9 @@
-# LLM4Onto: Ontology Quality Evaluation and Generation
+# LLM4Onto: Automated Ontology Quality Assessment and Expansion
 
 LLM4Onto is a framework designed to **evaluate ontology quality** and **generate ontologies using Large Language Models (LLMs)**. The ontology generation process expands upon an **input prompt written in an ontology format**, ensuring that the generated content follows a structured semantic representation. The repository focuses on two main aspects:
 
 1. **Quality Metrics**: Analyzing and selecting high-quality ontologies.
-2. **Ontology Generation**: Using a fine-tuned LLM to expand or generate ontologies, evaluated manually.
+2. **Ontology Generation**: Using an LLM loaded locally or from HuggingFace to expand or generate ontologies, evaluated manually.
 
 ![LLM4Onto Methodology](image/methodology.jpg)
 
@@ -13,27 +13,27 @@ LLM4Onto is a framework designed to **evaluate ontology quality** and **generate
 
 ### **1️⃣ Quality Metrics Computation**
 To compute quality metrics for ontologies:
-- Start a Docker container using:
+- Start the Docker container using:
   ```sh
-  docker compose -f docker-compose-data-prep.yml up -d
+  docker compose up -d
   ```
 - Execute the quality metrics script inside the container:
   ```sh
-  python quality_metrics.py
+  python scripts/quality_metrics/quality_metrics.py
   ```
 - This generates an Excel file containing ontology quality scores.
 
 ### **2️⃣ Ontology Generation**
-To generate ontologies using a fine-tuned LLM:
-- Start the model Docker container with GPU support:
+To generate ontologies using an LLM loaded locally or from HuggingFace:
+- Start the Docker container with GPU support:
   ```sh
-  docker compose -f docker-compose-model.yml up -d
+  docker compose up -d
   ```
 - Run the ontology generation script:
   ```sh
-  python prompt_gen.py
+  python scripts/prompt_generation/prompt_gen.py
   ```
-- **Input**: `prompts.json` defines ontology fragments that guide the model.
+- **Input**: `scripts/prompt_generation/prompts.json` defines ontology fragments that guide the model.
 - **Output**: Generated ontologies are stored in the `outputs` directory.
 
 ### **3️⃣ Benchmark Evaluation**
@@ -42,20 +42,34 @@ To generate ontologies using a fine-tuned LLM:
 
 ---
 
-<!-- ## 📂 Repository Structure
+## 📂 Repository Structure
 ```
-├── data/                # Example ontologies for testing
+├── data/                # Ontology datasets
+│   ├── ontology_repository/   # Full set of ontologies to be processed
+│   ├── sample/                # Example ontologies for testing
+│
+├── docker/              # Docker configuration files
+│
 ├── outputs/             # Generated ontologies and quality metrics
-├── results/             # Processed metrics and evaluations
+│
+├── requirements/        # Dependencies
+│
 ├── scripts/             # Core processing scripts
-├── docker/              # Docker configurations
+│   ├── prompt_generation/  # Ontology generation scripts
+│   ├── quality_metrics/     # Quality evaluation scripts
+│
+├── results/             # Processed metrics and evaluations
+│
+├── image/               # Visual documentation and methodology images
+│
+├── LICENSE              # Licensing information
 ├── README.md            # General documentation (this file)
 ```
 
---- -->
+---
 
 ## 🔍 Additional Notes
-- **Three example ontologies** are provided in `data/`, with corresponding outputs.
-- The `results/` folder contains **processed metrics from the DBpedia dataset**, generated ontologies, and their evaluations.
+- **Three example ontologies** are provided in `data/sample/`, with corresponding outputs.
+- The `results/` folder contains **processed metrics from the DBpedia Archivo dataset** with 1,766 ontologies (downloaded on July 15, 2024).
 - Each section has its own **detailed README** with further instructions.
 
