@@ -6,7 +6,7 @@ from transformers import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained(
         "meta-llama/Llama-3.2-1B",
-        use_auth_token="your_token"
+        use_auth_token="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"
     )
 
 
