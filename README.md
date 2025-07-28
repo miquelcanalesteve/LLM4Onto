@@ -72,4 +72,6 @@ To generate ontologies using an LLM loaded locally or from HuggingFace:
 - **Three example ontologies** are provided in `data/sample/`, with corresponding outputs.
 - The `results/` folder contains **processed metrics from the DBpedia Archivo dataset** with 1,766 ontologies (downloaded on July 15, 2024).
 - Each section has its own **detailed README** with further instructions.
+- The full dataset is available at [Hugging Face: DBpediaOntoTrain](https://huggingface.co/datasets/miquelCanal/DBpediaOntoTrain).
+
 
